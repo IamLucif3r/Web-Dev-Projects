@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Basic&family=Staatliches&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript">
+        function validation() {
+            if (document.HForm.id.value == "") {
+                alert("ID Field Cannot be Empty !");
+                document.HForm.ID.focus();
+                return false;
+            }
+            if (document.HForm.fname.value == "") {
+                alert("First Name Cannot be Empty !");
+                document.HForm.fname.focus();
+                return false;
+            }
+            if (document.HForm.lname.value == "") {
+                alert("Last Name Cannot be Empty !");
+                document.HForm.lname.focus();
+                return false;
+
+            }
+            if (document.HForm.name.value == "") {
+                alert("Parent/Spouse/Guardian Name Cannot be Empty !");
+                document.HForm.name.focus();
+                return false;
+            }
+
+            if (document.HForm.email.value == "") {
+                alert("Email Field Cannot be Empty !");
+                document.HForm.lname.focus();
+                return false;
+
+            }
+            if (document.HForm.email.value != "") {
+
+                emailValidation();
+
+
+            }
+            if (document.HForm.phone.value == "") {
+                alert("Phone Field Cannot be Empty !");
+                document.HForm.phone.focus();
+                return false;
+            }
+            if (document.HForm.phone.value != "") {
+                phoneValidation();
+            }
+
+
+
+            if (document.HForm.dob.value == "") {
+                alert("Date of Birth Cannot be Empty !");
+                document.HForm.dob.focus();
+                return false;
+            }
+
+            if (document.HForm.address.value == "") {
+                alert("Address of Patient Cannot be Empty !");
+                document.HForm.address.focus();
+                return false;
+            }
+
+            if (document.HForm.zip.value == "" || isNaN(document.HForm.zip.value) ||
+                document.HForm.zip.value.length != 6) {
+
+                alert("Please provide a zip in the format ######.");
+                document.HForm.zip.focus();
+                return false;
+            }
+
+            if (document.HForm.adate.value == "") {
+                alert("Admission Date Cannot be Empty !");
+                document.HForm.adate.focus();
+                return false;
+            }
+            if (document.HForm.ldate.value == "") {
+                alert("Date of Leave Cannot be Empty !");
+                document.HForm.ldate.focus();
+                return false;
+            }
+
+            if (document.HForm.ldate.value != "") {
+                dateValidation();
+            }
+
+        }
+
+        function emailValidation() {
+            var email = document.HForm.email.value;
+            atpos = email.indexOf("@");
+            dotpos = email.lastIndexOf(".");
+
+            if (atpos < 1 || (dotpos - atpos < 2)) {
+                alert("Email Format Not Correct! Must be abc@def.com");
+                document.myForm.EMail.focus();
+                return false;
+            }
+            return (true);
+
+        }
+        function phoneValidation() {
+            var phone = document.HForm.phone.value;
+
+            if (phone.length != 10) {
+                alert("Wrong Phone Number, Must be Atleast 10 Digit");
+            }
+        }
+        function dateValidation() {
+            var adate = new Date();
+            var ldate = new Date(adate);
+            var same = d1.getTime() === d2.getTime();
+            var notSame = d1.getTime() !== d2.getTime();
+            var timediff = Math.abs(ldate.getTime() - adate.getTime());
+            if (timediff < 0) {
+                alert("Patient's leave Date Can't be Higher than Patient's Admission Date");
+            }
+        }
+
+
+    </script>
+    <style>
+        body {
+            color: whitesmoke;
+            margin: 0px;
+            padding: 0px;
+            background-image: url("bg.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        form {
+            margin-bottom: 20px;
+            margin-left: 25px;
+            font-family: 'Gentium Book Basic', serif;
+            color: rgb(255, 255, 255);
+            font-size: medium;
+            margin-right: 25px;
+            padding-left: 40px;
+            padding-top: 40px;
+            border: 2px whitesmoke double;
+
+        }
+
+
+
+        form label {
+            margin: 25px;
+        }
+
+        h1 {
+            font-size: 60px;
+            font-family: 'Staatliches', cursive;
+            color: rgb(255, 255, 255);
+        }
+
+        h2:hover {
+            color: #0c1c24;
+        }
+
+        form input {
+            margin-left: 20px;
+        }
+
+        textarea {
+            align-items: center;
+            margin-left: 30px;
+            border-left: 9px;
+            align-items: center;
+            padding: 0px;
+            height: 100px;
+            width: 500px;
+            align-items: left;
+        }
+
+        button {
+            font-weight: bolder;
+            margin-bottom: 25px;
+            padding: 5px 10px;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        button:hover {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+
+
+        <h1>Hospital Form</h1><br><br>
+    </center>
+    <form name="HForm" onsubmit="return(validation());">
+        <h2>Patient's Details</h2>
+        <label for="id">ID <input type="text" name="id" id="id"></label>
+
+        <label for="fname">First Name <input type="text" name="FName" id="fname"></label>
+        <label for="lname">Last Name <input type="text" name="LName" id="lname"></label> <br><br>
+        <label for="name"> Parent/Spouse/Guardian Name <input type="text" name="name" id="name"> </label>
+        <label for="email">E-Mail <input type="text" name="email" id="email"></label><br><br>
+        <label for="phone">Phone <input type="tel" name="phone" id="phone"></label>
+        <label for="sex"> Gender <input type="radio" name="sex" id="sex"> <label for="male">Male</label> <input
+                type="radio" name="sex" id="sex"><label for="Female">Female</label> </label>
+        <label for="dob">Date Of Birth <input type="date" name="dob" id="dob"></label>
+        <br>
+        <br>
+        <h2>Patient's Contact Details</h2>
+        <label for="address">Address<input type="text" name="address" id="address"></label>
+        <label for="country">Nationality <input value="Indian" type="text" name="country" id="country"></label>
+        <label for="zip">Zip-Code <input type="text" name="zip" id="zip"></label>
+        <br><br> <label for="number">Emergency Contact <input type="text" name="number" id="number"></label>
+        <br><br>
+        <h2>Office Purpose</h2>
+
+        <label for="adate">Admit-Date <input type="date" name="adate" id="adate"></label>
+        <label for="ldate">Leave-Date <input type="date" name="ldate" id="ldate"></label><br><br>
+        <label for="note">Medical Condition-Type <textarea
+                class="note"> Mention Medical-Condition-Type. </textarea></label>
+
+        <br><br><br>
+        <center> <button>Submit</button></center>
+    </form>
+
+
+
+
+</body>
+
+</html>
